@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Screening System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <h2>AI Resume Screening System</h2>
+    <div>
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+    </div>
+</nav>
+<div class="container">
+    <h1>AI Resume Screening System</h1>
+
+    <form action="/analyze" method="POST" enctype="multipart/form-data">
+
+        <label>Candidate Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Phone Number</label>
+        <input type="text" name="phone" required>
+
+        <label>Job Description</label>
+
+        <textarea name="job_description"
+        placeholder="Paste Job Description here..."
+        required></textarea>
+
+        <label>Upload Resume (PDF)</label>
+
+        <input type="file"
+               name="resume"
+               accept=".pdf"
+               required>
+
+        <button type="submit">
+            Analyze Resume
+        </button>
+
+    </form>
+
+</div>
+<footer class="footer">
+    <p>© 2026 AI Resume Screening System | Developed by Harjot Saini</p>
+</footer>
+</body>
+</html>

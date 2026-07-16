@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recruiter Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<nav class="navbar">
+    <h2>AI Resume Screening System</h2>
+    <div>
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+    </div>
+</nav>
+
+<div class="container">
+
+<h1>Recruiter Dashboard</h1>
+
+<form method="GET" action="/dashboard">
+    <input type="text" name="search" placeholder="Search by Name or Email">
+    <button type="submit">Search</button>
+</form>
+
+<h2>Dashboard Statistics</h2>
+
+<p><strong>Total Candidates:</strong> {{ total_candidates }}</p>
+<p><strong>Average Score:</strong> {{ average_score }}%</p>
+<p><strong>Excellent Matches:</strong> {{ excellent }}</p>
+<p><strong>Good Matches:</strong> {{ good }}</p>
+<p><strong>Needs Improvement:</strong> {{ needs_improvement }}</p>
+
+<hr>
+
+<br>
+
+
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Resume</th>
+    <th>Score</th>
+    <th>Recommendation</th>
+    <th>Action</th>
+</tr>
+
+{% for result in results %}
+
+<tr>
+
+    <td>{{ result.name }}</td>
+
+    <td>{{ result.email }}</td>
+
+    <td>{{ result.phone }}</td>
+
+    <td>{{ result.resume_file }}</td>
+
+    <td>{{ result.score }}%</td>
+
+    <td>
+        {% if result.recommendation|trim == "Excellent Match" %}
+        <span style="color:green;font-weight:bold;">
+        {{ result.recommendation }}
+        </span>
+
+        {% elif result.recommendation|trim == "Good Match" %}
+
+        <span style="color:orange;font-weight:bold;">
+        {{ result.recommendation }}
+        </span>
+
+        {% else %}
+
+        <span style="color:red;font-weight:bold;">
+        {{ result.recommendation }}
+        </span>
+
+        {% endif %}
+    </td>
+
+    <td><a href="/delete/{{result._id}}">Delete</a></td>
+
+</tr>
+
+{% endfor %}
+
+
+
+</table>
+
+</div>
+<footer class="footer">
+    <p>© 2026 AI Resume Screening System | Developed by Harjot Saini</p>
+</footer>
+</body>
+</html>

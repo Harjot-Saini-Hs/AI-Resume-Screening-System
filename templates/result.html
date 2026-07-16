@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Screening Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <h2>AI Resume Screening System</h2>
+    <div>
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1>AI Resume Screening Result</h1>
+
+    <h2>Resume Match Score: {{ score }}%</h2>
+    <div style="width: 100%;background: #ddd;border-radius: 10px;">
+        <div style="width:{{score}}%;
+            background:#28a745;color:white;
+            text-align:center;padding:8px;
+            border-radius:10px;">
+            {{score}}
+        </div>
+    </div>
+
+    <h3>Matched Skills</h3>
+    <ul>
+        {% for skill in matched %}
+            <li>✅ {{ skill }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Missing Skills</h3>
+    <ul>
+        {% for skill in missing %}
+            <li>❌ {{ skill }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Recommendation</h3>
+    <p>{{ recommendation }}</p>
+
+    <h3>AI Suggestions</h3>
+    <ul>
+    {% for suggestion in suggestions %}
+        <li>{{ suggestion }}</li>
+    {% endfor %}
+        
+    </ul>
+
+    <br>
+
+    <a href="/download">
+        <button class="download-btn">Download PDF Report</button>
+    </a>
+
+</div>
+<footer class="footer">
+    <p>© 2026 AI Resume Screening System | Developed by Harjot Saini</p>
+</footer>
+</body>
+</html>
